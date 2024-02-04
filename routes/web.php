@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Application\ApplicationController;
+use App\Http\Controllers\Application\BlogController;
+use App\Http\Controllers\Application\ContactController;
+use App\Http\Controllers\Application\UsesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ApplicationController::class)->name('home');
+
+Route::resource('blog', BlogController::class)->only('index','show');
+
+Route::get('contact', ContactController::class)->name('contact');
+
+Route::get('uses', UsesController::class)->name('uses');
